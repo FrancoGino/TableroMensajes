@@ -1,0 +1,16 @@
+<!-- pendientes.html -->
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Mensajes</title>
+        </head>
+        <body>
+            <h1>Seleccione destinatario</h1>
+            
+            <form method="post">
+                {% csrf_token %}
+                {{ destinatarios.as_p }}
+                <button type="submit">Seleccionar</button>
+            </form>
+        </body>
+    </html>

@@ -1,0 +1,15 @@
+<!-- pendientes.html -->
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Mensajes enviados a { mensajes.remitente[0].remitente }</title>
+        </head>
+        <body>
+            <h1>mensajes</h1>
+            <ul>
+                {% for mensaje in mensajes %}
+                    <li><b>{{ mensaje.texto }}</b></li>
+                {% endfor %}
+            </ul>
+        </body>
+    </html>
