@@ -8,14 +8,15 @@ from .models import Mensajes
 def base(request):
     form = ListarDestinatarios()
     context={
-        'destinatarios': form,
+        'form': form,
         'url': 'http://localhost:8000/mensajes/recibidos/',
     }
     return render(request, 'Mensajes/base.html', context)
     
 def show_mensajes(request):
     mensajes = Mensajes.objects.filter(destinatario=request.GET.get('destinatarios'))
-    return render(request, 'Mensajes/show_mensajes.html', {'mensajes': mensajes})
+    destinatario = mensajes[0].destinatario
+    return render(request, 'Mensajes/show_mensajes.html', {'mensajes': mensajes, 'destinatario': destinatario})
     
 
 class ListarDestinatarios(forms.Form):

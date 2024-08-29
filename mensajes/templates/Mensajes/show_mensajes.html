@@ -2,14 +2,26 @@
 <!DOCTYPE html>
     <html>
         <head>
-            <title>Mensajes enviados a { mensajes.remitente[0].remitente }</title>
+            <title>Mensajes enviados</title>
         </head>
         <body>
-            <h1>mensajes</h1>
-            <ul>
-                {% for mensaje in mensajes %}
-                    <li><b>{{ mensaje.texto }}</b></li>
-                {% endfor %}
-            </ul>
+            <h1>Mensajes recibidos por {{destinatario}} </td></h1>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Mensaje</th>
+                        <th>Fecha y Hora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mensaje in mensajes %}
+                    <tr>
+                        <td>{{ mensaje.texto }}</td>
+                        <td>{{ mensaje.fecha_hora }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </body>
+        
     </html>

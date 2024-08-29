@@ -9,7 +9,7 @@
             
             <form action="{{url}}">
                 {% csrf_token %}
-                {{ destinatarios.as_p }}
+                {{ form.as_p }}
                 <button type="submit">Seleccionar</button>
             </form>
         </body>
