@@ -6,6 +6,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django import forms
 from .models import Mensajes
+from django_tables2 import SingleTableView
+from .tabla import MensajesTabla
 
 # Definición de la vista base
 def base(request):
@@ -25,8 +27,10 @@ def show_mensajes(request):
     destinatario = request.GET.get('destinatarios')
     # Filtra los mensajes para un destinatario específico
     mensajes = Mensajes.objects.filter(destinatario=destinatario)
-    # Renderiza la plantilla 'Mensajes/show_mensajes.html' con los mensajes y el destinatario en el contexto
-    return render(request, 'Mensajes/show_mensajes.html', {'mensajes': mensajes, 'destinatario': destinatario})
+    # Se crea una instancia de MensajesTabla con el queryset de mensajes
+    tabla = MensajesTabla(mensajes)
+    # Renderiza la plantilla 'Mensajes/show_mensajes.html' con la tabla de mensajes y el destinatario en el contexto
+    return render(request, 'Mensajes/show_mensajes.html', {'mensajes': tabla, 'destinatario': destinatario})
 
 # Definición del formulario ListarDestinatarios
 class ListarDestinatarios(forms.Form):
@@ -38,3 +42,8 @@ class ListarDestinatarios(forms.Form):
         choices=nombres_destinatarios,
         widget=forms.Select,
     )
+
+class MensajesListView(SingleTableView):
+    model = Mensajes
+    table_class = MensajesTabla
+    template_name = 'mensajes/tabla.html'

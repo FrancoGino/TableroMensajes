@@ -1,27 +1,14 @@
-<!-- pendientes.html -->
 <!DOCTYPE html>
-    <html>
-        <head>
-            <title>Mensajes enviados</title>
-        </head>
-        <body>
-            <h1>Mensajes recibidos por {{destinatario}} </td></h1>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Mensaje</th>
-                        <th>Fecha y Hora</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for mensaje in mensajes %}
-                    <tr>
-                        <td>{{ mensaje.texto }}</td>
-                        <td>{{ mensaje.fecha_hora }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </body>
-        
-    </html>
+<html>
+    <head>
+        <title>Mensajes recibidos</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <h1 style="text-align: center;">Mensajes recibidos por {{ destinatario }}</h1>
+
+        {% load render_table from django_tables2 %}
+        {% render_table mensajes %}
+
+    </body>
+</html>
