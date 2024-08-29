@@ -6,17 +6,16 @@ from django import forms
 from .models import Mensajes
 
 def base(request):
-    if request.method == 'POST':
-        mensajes = Mensajes.objects.filter(destinatario=request.POST.get('destinatarios'))
-        return render(request, 'Mensajes/show_mensajes.html', {'mensajes': mensajes})
-    else:
-        form = ListarDestinatarios()
-    return render(request, 'Mensajes/base.html', {'destinatarios': form})
+    form = ListarDestinatarios()
+    context={
+        'destinatarios': form,
+        'url': 'http://localhost:8000/mensajes/recibidos/',
+    }
+    return render(request, 'Mensajes/base.html', context)
     
-#def show_mensajes(request):
-#
-#    mensajes = Mensajes.objects.filter(destinatario='Franco')
-#    return render(request, 'Mensajes/show_mensajes.html', {'destinatarios': mensajes})
+def show_mensajes(request):
+    mensajes = Mensajes.objects.filter(destinatario=request.GET.get('destinatarios'))
+    return render(request, 'Mensajes/show_mensajes.html', {'mensajes': mensajes})
     
 
 class ListarDestinatarios(forms.Form):
