@@ -6,17 +6,17 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Lógica para poblar la base de datos
-        obj = Mensajes(remitente=f'Franco',destinatario=f'Enrique',texto='Hola Enrique, ¿sabes de la onda?')
+        obj = Mensajes(remitente=f'Franco',destinatario=f'Enrique',texto='Hola Enrique, ¿Hiciste el tp necesito ayuda?')
         obj.save()
-        obj = Mensajes(remitente=f'Enrique',destinatario=f'Franco',texto='No Franco, hace dias no anda nada')
+        obj = Mensajes(remitente=f'Enrique',destinatario=f'Franco',texto='No Franco, no hice nada')
         obj.save()
         obj = Mensajes(remitente=f'Enrique',destinatario=f'Franco',texto='preguntale a Marco')
         obj.save()
-        obj = Mensajes(remitente=f'Franco',destinatario=f'Marco',texto='Hola Marco, enrique me dijo que sabias de la onda')
+        obj = Mensajes(remitente=f'Franco',destinatario=f'Marco',texto='Hola Marco, Me podes dar una mano con el tp')
         obj.save()
-        obj = Mensajes(remitente=f'Marco',destinatario=f'Franco',texto='Si Franco, para vos 15K el G')
+        obj = Mensajes(remitente=f'Marco',destinatario=f'Franco',texto='Si Franco, ¿puedo hacer una meet hoy a las 15 te parece?')
         obj.save()
-        obj = Mensajes(remitente=f'Franco',destinatario=f'Marco',texto='uugghh')
+        obj = Mensajes(remitente=f'Franco',destinatario=f'Marco',texto='Si, Muchas gracias')
         obj.save()
         
         self.stdout.write(self.style.SUCCESS('Completado.'))
